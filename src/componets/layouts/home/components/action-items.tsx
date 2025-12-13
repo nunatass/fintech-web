@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, MotionValue } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 type ActionItemsProps = {
   addY: MotionValue<string>;
@@ -19,11 +20,13 @@ export function ActionItems({
   exchangeY,
   exchangeOpacity,
 }: ActionItemsProps) {
+  const t = useTranslations("actions");
+
   return (
     <div className="sticky top-0 h-screen flex flex-col items-center justify-center gap-2 md:gap-4 z-30 pointer-events-none">
-      <AddItem y={addY} opacity={addOpacity} />
-      <SendItem y={sendY} opacity={sendOpacity} />
-      <ExchangeItem y={exchangeY} opacity={exchangeOpacity} />
+      <AddItem y={addY} opacity={addOpacity} label={t("add")} />
+      <SendItem y={sendY} opacity={sendOpacity} label={t("send")} />
+      <ExchangeItem y={exchangeY} opacity={exchangeOpacity} label={t("exchange")} />
     </div>
   );
 }
@@ -31,9 +34,10 @@ export function ActionItems({
 type ItemProps = {
   y: MotionValue<string>;
   opacity: MotionValue<number>;
+  label: string;
 };
 
-function AddItem({ y, opacity }: ItemProps) {
+function AddItem({ y, opacity, label }: ItemProps) {
   return (
     <motion.div
       style={{ y, opacity }}
@@ -43,13 +47,13 @@ function AddItem({ y, opacity }: ItemProps) {
         <span className="text-white text-3xl md:text-5xl font-light">+</span>
       </div>
       <span className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold text-emerald-500 leading-none">
-        Add
+        {label}
       </span>
     </motion.div>
   );
 }
 
-function SendItem({ y, opacity }: ItemProps) {
+function SendItem({ y, opacity, label }: ItemProps) {
   return (
     <motion.div
       style={{ y, opacity }}
@@ -61,13 +65,13 @@ function SendItem({ y, opacity }: ItemProps) {
         </svg>
       </div>
       <span className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold text-blue-500 leading-none">
-        Send
+        {label}
       </span>
     </motion.div>
   );
 }
 
-function ExchangeItem({ y, opacity }: ItemProps) {
+function ExchangeItem({ y, opacity, label }: ItemProps) {
   return (
     <motion.div
       style={{ y, opacity }}
@@ -79,7 +83,7 @@ function ExchangeItem({ y, opacity }: ItemProps) {
         </svg>
       </div>
       <span className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold text-rose-500 leading-none">
-        Exchange
+        {label}
       </span>
     </motion.div>
   );

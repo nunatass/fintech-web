@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon, ArrowUpRightIcon } from "@/componets/icons";
 import type { NavItem } from "../config/nav-items";
@@ -12,6 +13,7 @@ type NavButtonProps = {
 };
 
 export function NavButton({ item, isActive, onClick }: NavButtonProps) {
+  const t = useTranslations("navigation");
   const hasIconOnly = item.icon && item.id === "home";
 
   return (
@@ -36,7 +38,7 @@ export function NavButton({ item, isActive, onClick }: NavButtonProps) {
         item.icon
       ) : (
         <>
-          <span>{item.label}</span>
+          <span>{t(item.labelKey)}</span>
           {item.hasDropdown && (
             <ChevronDownIcon
               className={cn(

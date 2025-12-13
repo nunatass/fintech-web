@@ -2,13 +2,15 @@
 
 import { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ButtonLink } from "@/componets/ui/button";
+import { useTranslations } from "next-intl";
 import { LanguageSelector } from "@/componets/ui/language-selector";
+import { AnimatedButton } from "@/componets/ui/animated-button";
 import { useMenu } from "@/componets/layouts/menu";
 
 export function Header() {
   const { isOpen } = useMenu();
   const hasAnimated = useRef(false);
+  const t = useTranslations("common");
 
   // Only animate after first render (when menu opens/closes)
   const shouldAnimate = hasAnimated.current;
@@ -32,9 +34,9 @@ export function Header() {
                 transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
                 style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
                 className="block text-4xl font-bold text-white tracking-tight"
-                aria-label="Plexo - Home"
+                aria-label={`${t("appName")} - Home`}
               >
-                Plexo
+                {t("appName")}
               </motion.a>
             )}
           </AnimatePresence>
@@ -54,17 +56,14 @@ export function Header() {
               <LanguageSelector className="hidden lg:block" />
 
               {/* Log in button - always visible */}
-              <ButtonLink
-                href="/login"
-                variant="outline"
-              >
-                Log in
-              </ButtonLink>
+              <AnimatedButton id="header-login" href="/login" variant="outline">
+                {t("login")}
+              </AnimatedButton>
 
               {/* Sign up button - hidden on very small screens */}
-              <ButtonLink href="/signup" variant="solid" className="hidden sm:inline-flex">
-                Sign up
-              </ButtonLink>
+              <AnimatedButton id="header-signup" href="/signup" variant="solid" className="hidden sm:flex">
+                {t("signup")}
+              </AnimatedButton>
             </motion.div>
           )}
         </AnimatePresence>

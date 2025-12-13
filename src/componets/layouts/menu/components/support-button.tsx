@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { MessageSquareIcon } from "@/componets/icons";
 
@@ -9,6 +10,8 @@ type SupportButtonProps = {
 };
 
 export function SupportButton({ variant }: SupportButtonProps) {
+  const t = useTranslations("common");
+
   if (variant === "mobile") {
     return (
       <motion.button
@@ -25,7 +28,7 @@ export function SupportButton({ variant }: SupportButtonProps) {
           "transition-colors duration-200",
           "focus:outline-none focus:ring-2 focus:ring-neutral-800/50"
         )}
-        aria-label="Open support chat"
+        aria-label={t("support")}
       >
         <MessageSquareIcon className="w-5 h-5" />
       </motion.button>
@@ -47,10 +50,10 @@ export function SupportButton({ variant }: SupportButtonProps) {
         "focus:outline-none focus:ring-2 focus:ring-neutral-800/50",
         "cursor-pointer"
       )}
-      aria-label="Open support chat"
+      aria-label={t("support")}
     >
       <MessageSquareIcon className="w-4 h-4" />
-      <span>Support</span>
+      <span>{t("support")}</span>
     </motion.button>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { MenuIcon, CloseIcon } from "@/componets/icons";
 import { MENU_EASING } from "../config";
@@ -12,6 +13,8 @@ type MenuButtonProps = {
 };
 
 export function MenuButton({ isOpen, onClick, isOnHero }: MenuButtonProps) {
+  const t = useTranslations("common");
+
   return (
     <motion.button
       type="button"
@@ -33,7 +36,7 @@ export function MenuButton({ isOpen, onClick, isOnHero }: MenuButtonProps) {
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
     >
-      <span>Menu</span>
+      <span>{t("menu")}</span>
       <MenuButtonIcon isOpen={isOpen} />
     </motion.button>
   );

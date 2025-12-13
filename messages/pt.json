@@ -1,0 +1,84 @@
+{
+  "common": {
+    "appName": "Plexo",
+    "login": "Entrar",
+    "signup": "Cadastrar",
+    "menu": "Menu",
+    "scroll": "Rolar",
+    "support": "Suporte"
+  },
+  "languages": {
+    "en": "English",
+    "pt": "Português",
+    "selectLanguage": "Selecionar idioma"
+  },
+  "hero": {
+    "title": {
+      "line1": "Um app",
+      "line2": "para tudo"
+    },
+    "subtitle": "Uma conta para todos os seus pagamentos.",
+    "appStore": {
+      "downloadOn": "Baixe na",
+      "appStore": "App Store",
+      "getItOn": "DISPONÍVEL NO",
+      "googlePlay": "Google Play"
+    }
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Sobre",
+    "cards": "Cartões",
+    "app": "App",
+    "faqs": "Dúvidas",
+    "homepage": "Página inicial"
+  },
+  "menu": {
+    "personal": "Pessoal",
+    "plexoCard": "Cartão Plexo",
+    "fees": "Taxas",
+    "business": "Empresas",
+    "company": "Empresa",
+    "newsroom": "Notícias",
+    "partnerships": "Parcerias",
+    "mediaAssets": "Mídia"
+  },
+  "unify": {
+    "title": {
+      "line1": "Unifique suas",
+      "line2": "finanças"
+    }
+  },
+  "actions": {
+    "add": "Adicionar",
+    "send": "Enviar",
+    "exchange": "Trocar"
+  },
+  "features": {
+    "add": {
+      "name": "Adicionar",
+      "title": "Adicione ou envie em poucos toques",
+      "description": "Adicione ou envie dinheiro facilmente da sua conta."
+    },
+    "send": {
+      "name": "Enviar",
+      "title": "Envie dinheiro instantaneamente",
+      "description": "Transfira fundos para qualquer pessoa, em qualquer lugar, em segundos."
+    },
+    "method": {
+      "name": "Método",
+      "title": "Mais de 50 métodos de pagamento na Europa",
+      "description": "A Plexo está conectada com mais de 25 países e 50 métodos de pagamento."
+    },
+    "exchange": {
+      "name": "Câmbio",
+      "title": "Troque moedas instantaneamente",
+      "description": "Obtenha as melhores taxas ao trocar entre moedas."
+    },
+    "cards": {
+      "name": "Cartões",
+      "title": "Cartões virtuais e físicos",
+      "description": "Obtenha seu cartão e comece a gastar em qualquer lugar do mundo."
+    }
+  }
+}

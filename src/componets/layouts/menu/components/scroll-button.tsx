@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { MouseIcon } from "@/componets/icons";
 
 export function ScrollButton() {
+  const t = useTranslations("common");
+
   return (
     <motion.button
       type="button"
@@ -22,7 +25,7 @@ export function ScrollButton() {
       aria-label="Scroll down"
     >
       <MouseIcon className="w-4 h-4" />
-      <span>Scroll</span>
+      <span>{t("scroll")}</span>
     </motion.button>
   );
 }

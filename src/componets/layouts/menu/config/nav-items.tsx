@@ -2,7 +2,7 @@ import { HomeIcon } from "@/componets/icons";
 
 export type NavItem = {
   id: string;
-  label: string;
+  labelKey: string;
   icon?: React.ReactNode;
   hasDropdown?: boolean;
   isExternal?: boolean;
@@ -12,29 +12,29 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   {
     id: "home",
-    label: "Home",
+    labelKey: "home",
     icon: <HomeIcon className="w-5 h-5" />,
     href: "/",
   },
   {
     id: "about",
-    label: "About",
+    labelKey: "about",
     hasDropdown: true,
   },
   {
     id: "cards",
-    label: "Cards",
+    labelKey: "cards",
     isExternal: true,
     href: "/cards",
   },
   {
     id: "app",
-    label: "App",
+    labelKey: "app",
     hasDropdown: true,
   },
   {
     id: "faqs",
-    label: "FAQs",
+    labelKey: "faqs",
     hasDropdown: true,
   },
 ];

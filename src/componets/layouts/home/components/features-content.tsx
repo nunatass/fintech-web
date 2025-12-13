@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, MotionValue } from "framer-motion";
-import { FEATURES_DATA } from "../config";
+import { useTranslations } from "next-intl";
+
+const featureKeys = ["add", "send", "method", "exchange", "cards"] as const;
 
 type FeaturesContentProps = {
   featureOpacities: MotionValue<number>[];
@@ -9,6 +11,8 @@ type FeaturesContentProps = {
 };
 
 export function FeaturesContent({ featureOpacities, featureYs }: FeaturesContentProps) {
+  const t = useTranslations("features");
+
   return (
     <div className="relative flex-1 max-w-xl">
       {/* Line accent */}
@@ -16,9 +20,9 @@ export function FeaturesContent({ featureOpacities, featureYs }: FeaturesContent
 
       {/* Feature texts - stacked with animations */}
       <div className="relative h-40 md:h-48">
-        {FEATURES_DATA.map((feature, index) => (
+        {featureKeys.map((key, index) => (
           <motion.div
-            key={feature.id}
+            key={key}
             style={{
               opacity: featureOpacities[index],
               y: featureYs[index],
@@ -26,10 +30,10 @@ export function FeaturesContent({ featureOpacities, featureYs }: FeaturesContent
             className="absolute inset-0"
           >
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-4">
-              {feature.title}
+              {t(`${key}.title`)}
             </h2>
             <p className="text-base md:text-lg text-white/70 leading-relaxed">
-              {feature.description}
+              {t(`${key}.description`)}
             </p>
           </motion.div>
         ))}

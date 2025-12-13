@@ -1,19 +1,24 @@
 "use client";
 
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { FEATURES_DATA } from "../config";
+import { useTranslations } from "next-intl";
+
+const featureKeys = ["add", "send", "method", "exchange", "cards"] as const;
 
 type FeaturesProgressProps = {
   scrollYProgress: MotionValue<number>;
 };
 
 export function FeaturesProgress({ scrollYProgress }: FeaturesProgressProps) {
+  const t = useTranslations("features");
+
   return (
     <div className="absolute bottom-8 left-6 md:left-10 lg:left-16 flex items-center gap-3">
-      {FEATURES_DATA.map((feature, index) => (
+      {featureKeys.map((key, index) => (
         <ProgressIndicator
-          key={feature.id}
-          feature={feature}
+          key={key}
+          id={String(index + 1).padStart(2, "0")}
+          name={t(`${key}.name`)}
           index={index}
           scrollYProgress={scrollYProgress}
         />
@@ -23,12 +28,13 @@ export function FeaturesProgress({ scrollYProgress }: FeaturesProgressProps) {
 }
 
 type ProgressIndicatorProps = {
-  feature: typeof FEATURES_DATA[number];
+  id: string;
+  name: string;
   index: number;
   scrollYProgress: MotionValue<number>;
 };
 
-function ProgressIndicator({ feature, index, scrollYProgress }: ProgressIndicatorProps) {
+function ProgressIndicator({ id, name, index, scrollYProgress }: ProgressIndicatorProps) {
   const opacity = useTransform(
     scrollYProgress,
     [index * 0.2, index * 0.2 + 0.1],
@@ -46,13 +52,13 @@ function ProgressIndicator({ feature, index, scrollYProgress }: ProgressIndicato
         style={{ opacity }}
         className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-sm text-white/80"
       >
-        {feature.id}
+        {id}
       </motion.span>
       <motion.span
         style={{ opacity: nameOpacity }}
         className="text-sm text-white font-medium"
       >
-        {feature.name}
+        {name}
       </motion.span>
     </motion.div>
   );

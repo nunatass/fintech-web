@@ -1,17 +1,136 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { ArrowUpRightIcon } from "@/componets/icons";
-import { MENU_EASING, menuSections, type MenuItem } from "../config";
+import { MENU_EASING
+ } from "../config";
+
+type MenuItemConfig = {
+  id: string;
+  labelKey: string;
+  icon: React.ReactNode;
+  href: string;
+  isExternal?: boolean;
+  isActive?: boolean;
+};
+
+type MenuSectionConfig = {
+  titleKey?: string;
+  items: MenuItemConfig[];
+};
+
+const menuSectionsConfig: MenuSectionConfig[] = [
+  {
+    items: [
+      {
+        id: "homepage",
+        labelKey: "navigation.homepage",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/30 flex items-center justify-center">
+            <div className="w-5 h-5 rounded bg-white/20" />
+          </div>
+        ),
+        href: "/",
+        isActive: true,
+      },
+    ],
+  },
+  {
+    titleKey: "menu.personal",
+    items: [
+      {
+        id: "plexo-card",
+        labelKey: "menu.plexoCard",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center overflow-hidden">
+            <div className="w-6 h-4 rounded bg-gradient-to-br from-pink-300 to-purple-400" />
+          </div>
+        ),
+        href: "/personal/card",
+      },
+      {
+        id: "fees",
+        labelKey: "menu.fees",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center overflow-hidden">
+            <div className="w-6 h-6 rounded bg-[#86efac]/40" />
+          </div>
+        ),
+        href: "/personal/fees",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        id: "business",
+        labelKey: "menu.business",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center text-white font-semibold">
+            B
+          </div>
+        ),
+        href: "/business",
+        isExternal: true,
+      },
+    ],
+  },
+  {
+    titleKey: "menu.company",
+    items: [
+      {
+        id: "about",
+        labelKey: "navigation.about",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded bg-white/30" />
+          </div>
+        ),
+        href: "/company/about",
+      },
+      {
+        id: "newsroom",
+        labelKey: "menu.newsroom",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded bg-white/30" />
+          </div>
+        ),
+        href: "/company/newsroom",
+      },
+      {
+        id: "partnerships",
+        labelKey: "menu.partnerships",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded bg-white/30" />
+          </div>
+        ),
+        href: "/company/partnerships",
+      },
+      {
+        id: "media-assets",
+        labelKey: "menu.mediaAssets",
+        icon: (
+          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-white/30" />
+          </div>
+        ),
+        href: "/company/media-assets",
+      },
+    ],
+  },
+];
 
 export function MenuContent() {
   return (
     <div className="px-6 pb-32">
-      {menuSections.map((section, sectionIndex) => (
+      {menuSectionsConfig.map((section, sectionIndex) => (
         <MenuSection
           key={sectionIndex}
-          title={section.title}
+          titleKey={section.titleKey}
           items={section.items}
           sectionIndex={sectionIndex}
         />
@@ -21,12 +140,14 @@ export function MenuContent() {
 }
 
 type MenuSectionProps = {
-  title?: string;
-  items: MenuItem[];
+  titleKey?: string;
+  items: MenuItemConfig[];
   sectionIndex: number;
 };
 
-function MenuSection({ title, items, sectionIndex }: MenuSectionProps) {
+function MenuSection({ titleKey, items, sectionIndex }: MenuSectionProps) {
+  const t = useTranslations();
+
   return (
     <motion.div 
       className="mb-2"
@@ -38,9 +159,9 @@ function MenuSection({ title, items, sectionIndex }: MenuSectionProps) {
         ease: MENU_EASING
       }}
     >
-      {title && (
+      {titleKey && (
         <p className="text-white/50 text-sm font-medium mb-2 mt-4">
-          {title}
+          {t(titleKey)}
         </p>
       )}
       <div className="space-y-1">
@@ -58,12 +179,14 @@ function MenuSection({ title, items, sectionIndex }: MenuSectionProps) {
 }
 
 type MenuItemLinkProps = {
-  item: MenuItem;
+  item: MenuItemConfig;
   sectionIndex: number;
   itemIndex: number;
 };
 
 function MenuItemLink({ item, sectionIndex, itemIndex }: MenuItemLinkProps) {
+  const t = useTranslations();
+
   return (
     <motion.a
       href={item.href}
@@ -86,7 +209,7 @@ function MenuItemLink({ item, sectionIndex, itemIndex }: MenuItemLinkProps) {
     >
       {item.icon}
       <span className="text-white font-medium flex-1">
-        {item.label}
+        {t(item.labelKey)}
       </span>
       {item.isExternal && (
         <ArrowUpRightIcon className="w-4 h-4 text-white/70" />

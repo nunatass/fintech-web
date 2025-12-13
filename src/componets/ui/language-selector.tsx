@@ -1,23 +1,26 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { ChevronUpIcon } from "@/componets/icons";
+import { ChevronDownIcon } from "@/componets/icons";
+import { useRouter, usePathname } from "@/i18n/routing";
+import { type Locale } from "@/i18n/config";
 import Image from "next/image";
 
 import englandFlag from "@/assets/images/countries/england.svg";
 import portugalFlag from "@/assets/images/countries/portugal.svg";
 
 type Language = {
-  code: string;
-  name: string;
+  code: Locale;
+  nameKey: string;
   flag: typeof englandFlag;
 };
 
 const languages: Language[] = [
-  { code: "EN", name: "English", flag: englandFlag },
-  { code: "PT", name: "Português", flag: portugalFlag },
+  { code: "en", nameKey: "en", flag: englandFlag },
+  { code: "pt", nameKey: "pt", flag: portugalFlag },
 ];
 
 type LanguageSelectorProps = {
@@ -27,8 +30,14 @@ type LanguageSelectorProps = {
 
 export function LanguageSelector({ className, size = "default" }: LanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0]);
+  const [isPending, startTransition] = useTransition();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations("languages");
+
+  const selectedLang = languages.find(lang => lang.code === locale) || languages[0];
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -42,16 +51,32 @@ export function LanguageSelector({ className, size = "default" }: LanguageSelect
   }, []);
 
   const handleSelect = (lang: Language) => {
-    setSelectedLang(lang);
     setIsOpen(false);
+    startTransition(() => {
+      router.replace(pathname, { locale: lang.code });
+    });
   };
 
   return (
-    <div ref={dropdownRef} className={cn("relative", className)}>
+    <motion.div 
+      ref={dropdownRef} 
+      layout
+      className={cn("relative", className)}
+      transition={{ layout: { duration: 0.3, ease: [0.32, 0.72, 0, 1] } }}
+    >
       {/* Trigger button */}
-      <button
+      <motion.button
         type="button"
+        layout
         onClick={() => setIsOpen(!isOpen)}
+        disabled={isPending}
+        whileHover={{ scale: 0.97 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ 
+          duration: 0.2, 
+          ease: [0.33, 1, 0.68, 1],
+          layout: { duration: 0.3, ease: [0.32, 0.72, 0, 1] }
+        }}
         className={cn(
           "flex items-center gap-2",
           "text-white text-sm font-medium",
@@ -60,27 +85,28 @@ export function LanguageSelector({ className, size = "default" }: LanguageSelect
           "hover:border-[#86efac]/70 hover:bg-[#86efac]/10",
           "transition-colors duration-200",
           "focus:outline-none focus:ring-2 focus:ring-[#86efac]/40",
+          "disabled:opacity-50",
           size === "default" ? "px-4 py-2.5" : "px-5 py-3"
         )}
-        aria-label="Select language"
+        aria-label={t("selectLanguage")}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
         <Image
           src={selectedLang.flag}
-          alt={selectedLang.name}
+          alt={t(selectedLang.nameKey)}
           width={20}
           height={20}
           className="w-5 h-5 rounded-sm object-cover"
         />
-        <span>{selectedLang.code}</span>
-        <ChevronUpIcon className={cn(
+        <span>{selectedLang.code.toUpperCase()}</span>
+        <ChevronDownIcon className={cn(
           "w-4 h-4 opacity-70 transition-transform duration-200",
           isOpen && "rotate-180"
         )} />
-      </button>
+      </motion.button>
 
-      {/* Dropdown - only this has animation */}
+      {/* Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -117,12 +143,12 @@ export function LanguageSelector({ className, size = "default" }: LanguageSelect
               >
                 <Image
                   src={lang.flag}
-                  alt={lang.name}
+                  alt={t(lang.nameKey)}
                   width={24}
                   height={24}
                   className="w-6 h-6 rounded-sm object-cover"
                 />
-                <span className="flex-1">{lang.name}</span>
+                <span className="flex-1">{t(lang.nameKey)}</span>
                 {selectedLang.code === lang.code && (
                   <svg
                     className="w-5 h-5 text-jeton-green"
@@ -139,6 +165,6 @@ export function LanguageSelector({ className, size = "default" }: LanguageSelect
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

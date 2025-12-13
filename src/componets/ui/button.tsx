@@ -49,14 +49,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         disabled={disabled}
         onClick={onClick}
+        layout
         whileHover={{ scale: 0.97 }}
         whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2, ease: [0.33, 1, 0.68, 1] }}
+        transition={{ 
+          duration: 0.2, 
+          ease: [0.33, 1, 0.68, 1],
+          layout: { duration: 0.3, ease: [0.32, 0.72, 0, 1] }
+        }}
         className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
         aria-label={props["aria-label"]}
         aria-haspopup={props["aria-haspopup"]}
       >
-        <span className="inline-flex items-center gap-2">{children}</span>
+        <motion.span 
+          layout
+          className="inline-flex items-center gap-2 whitespace-nowrap"
+        >
+          {children}
+        </motion.span>
       </motion.button>
     );
   }
@@ -76,12 +86,22 @@ const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       <motion.a
         ref={ref}
         href={href}
+        layout
         whileHover={{ scale: 0.97 }}
         whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2, ease: [0.33, 1, 0.68, 1] }}
+        transition={{ 
+          duration: 0.2, 
+          ease: [0.33, 1, 0.68, 1],
+          layout: { duration: 0.3, ease: [0.32, 0.72, 0, 1] }
+        }}
         className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
       >
-        <span className="inline-flex items-center gap-2">{children}</span>
+        <motion.span 
+          layout
+          className="inline-flex items-center gap-2 whitespace-nowrap"
+        >
+          {children}
+        </motion.span>
       </motion.a>
     );
   }

@@ -39,39 +39,3 @@ export const HERO_VARIANTS = {
     },
   },
 };
-
-// Features data for features section
-export const FEATURES_DATA = [
-  {
-    id: "01",
-    name: "Add",
-    title: "Add or send in a few taps",
-    description: "Easily add or send money from your account.",
-  },
-  {
-    id: "02",
-    name: "Send",
-    title: "Send money instantly",
-    description: "Transfer funds to anyone, anywhere in seconds.",
-  },
-  {
-    id: "03",
-    name: "Method",
-    title: "50+ payment methods across Europe",
-    description: "Jeton is seamlessly connected with more than 25 countries, and 50 payment methods.",
-  },
-  {
-    id: "04",
-    name: "Exchange",
-    title: "Exchange currencies instantly",
-    description: "Get the best rates when you exchange between currencies.",
-  },
-  {
-    id: "05",
-    name: "Cards",
-    title: "Virtual & physical cards",
-    description: "Get your card and start spending anywhere in the world.",
-  },
-];
-
-export type Feature = typeof FEATURES_DATA[number];

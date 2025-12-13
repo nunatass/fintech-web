@@ -1,17 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { AppleIcon, GooglePlayIcon } from "@/componets/icons";
 
 type AppStoreButtonProps = {
   store: "apple" | "google";
-  label: string;
-  storeName: string;
   href: string;
 };
 
-export function AppStoreButton({ store, label, storeName, href }: AppStoreButtonProps) {
+export function AppStoreButton({ store, href }: AppStoreButtonProps) {
+  const t = useTranslations("hero.appStore");
+  
+  const label = store === "apple" ? t("downloadOn") : t("getItOn");
+  const storeName = store === "apple" ? t("appStore") : t("googlePlay");
+
   return (
     <motion.a
       href={href}
@@ -28,7 +32,7 @@ export function AppStoreButton({ store, label, storeName, href }: AppStoreButton
         "transition-colors duration-200",
         "focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-jeton-green"
       )}
-      aria-label={`Download from ${storeName}`}
+      aria-label={`${label} ${storeName}`}
     >
       {store === "apple" ? (
         <AppleIcon className="w-5 h-5 text-white flex-shrink-0" />

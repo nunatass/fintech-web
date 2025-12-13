@@ -12,9 +12,13 @@
 		"biome:check:apply": "npx @biomejs/biome check --apply ./src"
 	},
 	"dependencies": {
+		"@heroicons/react": "^2.2.0",
+		"clsx": "^2.1.1",
+		"framer-motion": "^12.23.26",
 		"next": "15.1.3",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"tailwind-merge": "^3.4.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.6.1",

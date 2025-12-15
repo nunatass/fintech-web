@@ -41,53 +41,53 @@ export function BenefitsSection() {
     >
       {/* Desktop Layout */}
       <div className="hidden md:block relative">
-        {/* Fixed iPhone on the left */}
-        <div className="sticky top-0 h-screen flex items-center justify-start px-12 lg:px-20 xl:px-32 pointer-events-none z-10">
+        {/* Sticky iPhone mask - acts as a window/portal */}
+        <div className="sticky top-0 h-screen flex items-center justify-start px-12 lg:px-20 xl:px-32 pointer-events-none z-20">
           <div className="w-[45%] flex items-center justify-center">
+            {/* Invisible mask area - only reveals content behind it */}
             <div 
-              className="relative w-[350px] h-[700px] rounded-[3rem] bg-black shadow-2xl overflow-hidden pointer-events-auto"
+              className="relative w-[350px] h-[700px]"
               style={{
-                clipPath: "inset(0 0 0 0 round 3rem)"
+                clipPath: "inset(0 0 0 0 round 3rem)",
+                WebkitClipPath: "inset(0 0 0 0 round 3rem)"
               }}
             >
-              {/* iPhone notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10" />
+              {/* iPhone notch overlay */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-jeton-green rounded-b-3xl z-30" />
               
-              {/* This is just the frame - content will scroll behind it */}
-              <div className="absolute inset-0 rounded-[3rem] bg-transparent" />
+              {/* iPhone border/frame */}
+              <div className="absolute inset-0 rounded-[3rem] border-[14px] border-black pointer-events-none z-20" />
             </div>
           </div>
         </div>
 
         {/* Scrolling content */}
-        <div className="relative">
+        <div className="relative -mt-[100vh]">
           {cards.map((card, index) => (
             <div 
               key={card.id}
               className="min-h-screen flex items-center justify-between px-12 lg:px-20 xl:px-32 py-20"
             >
-              {/* Left side - Content that shows through iPhone mask */}
+              {/* Left side - iPhone content that shows through the mask */}
               <div className="w-[45%] flex items-center justify-center">
-                <div className="relative w-[350px] h-[700px]">
+                <div className="relative w-[350px] h-[700px] rounded-[3rem] overflow-hidden bg-black shadow-2xl">
                   {/* Content */}
-                  <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
-                    {card.videoSrc ? (
-                      <video
-                        src={card.videoSrc}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <img
-                        src={card.imageSrc}
-                        alt={card.title}
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                  </div>
+                  {card.videoSrc ? (
+                    <video
+                      src={card.videoSrc}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={card.imageSrc}
+                      alt={card.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
               </div>
 

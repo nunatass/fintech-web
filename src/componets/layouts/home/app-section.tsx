@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "framer-motion";
 import image1 from "@/assets/images/1.jpg";
+import { IPhoneFrame } from "@/componets/ui/iphone-frame";
+import { AnimatedButton } from "@/componets/ui/animated-button";
 
 export function AppSection() {
   const t = useTranslations("appSection");
@@ -179,6 +181,47 @@ export function AppSection() {
       className="relative bg-jeton-green overflow-hidden"
       aria-label="App features section"
     >
+      {/* Mobile Layout */}
+      <div className="md:hidden">
+        {cards.map((card, index) => (
+          <div 
+            key={card.id}
+            className="min-h-screen flex flex-col items-center justify-center px-6 py-20 gap-8"
+          >
+            {/* Top: Title */}
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-black leading-tight">
+                {card.title}
+              </h2>
+            </div>
+
+            {/* Middle: iPhone */}
+            <div className="flex justify-center">
+              <IPhoneFrame 
+                videoSrc={card.videoSrc}
+                imageSrc={card.imageSrc}
+              />
+            </div>
+
+            {/* Bottom: Description + Button */}
+            <div className="text-center space-y-4">
+              <p className="text-base sm:text-lg text-black/90 leading-relaxed">
+                {card.description}
+              </p>
+              <div className="flex justify-center">
+                <AnimatedButton 
+                  id={`app-card-${card.id}-mobile`}
+                  href="#"
+                  variant="solid"
+                >
+                  {card.ctaText}
+                </AnimatedButton>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Desktop Layout */}
       <div className="hidden md:block relative" ref={containerRef}>
         {/* Fixed iPhone in center - only visible when app section is >10% in view */}
@@ -300,7 +343,7 @@ export function AppSection() {
                 <div className="hidden md:flex w-full items-center justify-between gap-8">
                   {/* Left: Title */}
                   <div className="w-[30%] lg:w-[32%]">
-                    <h2 className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-white leading-tight">
+                    <h2 className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-black leading-tight">
                       {card.title}
                     </h2>
                   </div>
@@ -310,35 +353,16 @@ export function AppSection() {
 
                   {/* Right: Description + Button */}
                   <div className="w-[30%] lg:w-[32%] space-y-4 lg:space-y-6">
-                    <p className="text-base lg:text-lg xl:text-xl text-white/90 leading-relaxed">
+                    <p className="text-base lg:text-lg xl:text-xl text-black/90 leading-relaxed">
                       {card.description}
                     </p>
-                    <button className="px-6 lg:px-8 py-3 lg:py-4 bg-white text-black rounded-full font-semibold text-base lg:text-lg hover:bg-white/90 transition-colors">
+                    <AnimatedButton 
+                      id={`app-card-${card.id}`}
+                      href="#"
+                      variant="solid"
+                    >
                       {card.ctaText}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Mobile: Title top, description bottom */}
-                <div className="flex md:hidden w-full flex-col items-center justify-between h-full py-20">
-                  {/* Top: Title */}
-                  <div className="text-center space-y-4">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight px-4">
-                      {card.title}
-                    </h2>
-                  </div>
-
-                  {/* Middle: iPhone (sticky above) */}
-                  <div />
-
-                  {/* Bottom: Description + Button */}
-                  <div className="text-center space-y-4 px-6">
-                    <p className="text-base sm:text-lg text-white/90 leading-relaxed">
-                      {card.description}
-                    </p>
-                    <button className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 transition-colors">
-                      {card.ctaText}
-                    </button>
+                    </AnimatedButton>
                   </div>
                 </div>
               </div>

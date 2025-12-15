@@ -40,41 +40,25 @@ export function BenefitsSection() {
       aria-label="App features section"
     >
       {/* Desktop Layout */}
-      <div className="hidden md:block relative">
-        {/* Clipping container - only shows content in this area */}
-        <div className="sticky top-0 h-screen overflow-hidden z-10">
-          <div className="absolute inset-0 flex items-center justify-start px-12 lg:px-20 xl:px-32">
+      <div className="hidden md:block">
+        {cards.map((card, index) => (
+          <div 
+            key={card.id}
+            className="min-h-screen flex items-center justify-between px-12 lg:px-20 xl:px-32 py-20"
+          >
+            {/* Left side - iPhone with mask */}
             <div className="w-[45%] flex items-center justify-center">
-              {/* Clipping window - iPhone-shaped */}
-              <div className="relative w-[350px] h-[700px] rounded-[3rem] overflow-hidden">
-                {/* This creates the visible area */}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Sticky iPhone frame - on top of everything */}
-        <div className="sticky top-0 h-screen flex items-center justify-start px-12 lg:px-20 xl:px-32 z-20 pointer-events-none -mt-[100vh]">
-          <div className="w-[45%] flex items-center justify-center">
-            {/* iPhone frame */}
-            <div className="relative w-[350px] h-[700px] rounded-[3rem] bg-black shadow-2xl overflow-hidden">
-              {/* iPhone notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10" />
-            </div>
-          </div>
-        </div>
-
-        {/* Scrolling content */}
-        <div className="relative -mt-[100vh]">
-          {cards.map((card, index) => (
-            <div 
-              key={card.id}
-              className="min-h-screen flex items-center justify-between px-12 lg:px-20 xl:px-32 py-20"
-            >
-              {/* Left side - iPhone content */}
-              <div className="w-[45%] flex items-center justify-center">
-                <div className="relative w-[350px] h-[700px] rounded-[3rem] overflow-hidden bg-black">
-                  {/* Content */}
+              <div 
+                className="relative w-[350px] h-[700px] rounded-[3rem] bg-black shadow-2xl overflow-hidden"
+                style={{
+                  clipPath: "inset(0 0 0 0 round 3rem)"
+                }}
+              >
+                {/* iPhone notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10" />
+                
+                {/* Content - shows through the mask */}
+                <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
                   {card.videoSrc ? (
                     <video
                       src={card.videoSrc}
@@ -93,22 +77,22 @@ export function BenefitsSection() {
                   )}
                 </div>
               </div>
-
-              {/* Right side - Text content */}
-              <div className="w-[45%] space-y-6">
-                <h2 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                  {card.title}
-                </h2>
-                <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl">
-                  {card.description}
-                </p>
-                <button className="px-8 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 transition-colors">
-                  {card.ctaText}
-                </button>
-              </div>
             </div>
-          ))}
-        </div>
+
+            {/* Right side - Text content (scrolls normally) */}
+            <div className="w-[45%] space-y-6">
+              <h2 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+                {card.title}
+              </h2>
+              <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl">
+                {card.description}
+              </p>
+              <button className="px-8 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 transition-colors">
+                {card.ctaText}
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Mobile Layout */}

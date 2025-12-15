@@ -1,0 +1,166 @@
+{
+  "common": {
+    "appName": "Plexo",
+    "login": "Entrar",
+    "signup": "Cadastrar",
+    "menu": "Menu",
+    "scroll": "Rolar",
+    "support": "Suporte"
+  },
+  "languages": {
+    "en": "English",
+    "pt": "Português",
+    "selectLanguage": "Selecionar idioma"
+  },
+  "hero": {
+    "title": {
+      "line1": "Um app",
+      "line2": "para tudo"
+    },
+    "subtitle": "Uma conta para todos os seus pagamentos.",
+    "appStore": {
+      "downloadOn": "Baixe na",
+      "appStore": "App Store",
+      "getItOn": "DISPONÍVEL NO",
+      "googlePlay": "Google Play"
+    }
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Sobre",
+    "benefits": "Benefícios",
+    "cards": "Cartões",
+    "app": "App",
+    "faqs": "Dúvidas",
+    "homepage": "Página inicial"
+  },
+  "menu": {
+    "personal": "Pessoal",
+    "plexoCard": "Cartão Plexo",
+    "fees": "Taxas",
+    "business": "Empresas",
+    "company": "Empresa",
+    "newsroom": "Notícias",
+    "partnerships": "Parcerias",
+    "mediaAssets": "Mídia"
+  },
+  "unify": {
+    "title": {
+      "line1": "Unifique suas",
+      "line2": "finanças"
+    }
+  },
+  "actions": {
+    "add": "Adicionar",
+    "send": "Enviar",
+    "payments": "Pagar"
+  },
+  "benefits": {
+    "title": {
+      "line1": "BENEFÍCIOS",
+      "line2": "FLEXÍVEIS"
+    },
+    "items": {
+      "international": {
+        "title": "Cartão Internacional",
+        "descriptionLine1": "Use seu cartão para pagamentos internacionais em qualquer lugar do mundo.",
+        "descriptionLine2": "Sem fronteiras, sem limites."
+      },
+      "fees": {
+        "title": "Menores Taxas",
+        "descriptionLine1": "Aproveite as menores taxas do mercado.",
+        "descriptionLine2": "Economize mais em cada transação."
+      },
+      "transfers": {
+        "title": "Transferências Instantâneas",
+        "descriptionLine1": "Envie dinheiro instantaneamente dentro e fora do país.",
+        "descriptionLine2": "Rápido, seguro, confiável."
+      },
+      "cashback": {
+        "title": "Cashback",
+        "descriptionLine1": "Ganhe cashback em cada compra, online ou presencial.",
+        "descriptionLine2": "Economize mais enquanto gasta."
+      }
+    }
+  },
+  "cardSection": {
+    "card": {
+      "title": "Seu Cartão para Todas as Compras",
+      "features": {
+        "contactless": "Pagamentos por aproximação? Claro.",
+        "limits": "Limites de gastos? Sim.",
+        "freezing": "Bloqueio de cartão? Também."
+      },
+      "cta": "Peça seu cartão",
+      "learnMore": "Saiba mais"
+    },
+    "moveMoney": {
+      "title": "Mova seu dinheiro pelo mundo",
+      "description": "Economize quando enviar, gastar e receber em diferentes moedas. Tudo que você precisa, em uma conta, onde você precisar.",
+      "cta": "Começar",
+      "learnMore": "Explorar a Conta"
+    }
+  },
+  "features": {
+    "add": {
+      "name": "Adicionar",
+      "title": "Adicione ou envie em poucos toques",
+      "description": "Adicione ou envie dinheiro facilmente da sua conta."
+    },
+    "send": {
+      "name": "Enviar",
+      "title": "Envie dinheiro instantaneamente",
+      "description": "Transfira fundos para qualquer pessoa, em qualquer lugar, em segundos."
+    },
+    "method": {
+      "name": "Método",
+      "title": "Mais de 50 métodos de pagamento na Europa",
+      "description": "A Plexo está conectada com mais de 25 países e 50 métodos de pagamento."
+    },
+    "exchange": {
+      "name": "Câmbio",
+      "title": "Troque moedas instantaneamente",
+      "description": "Obtenha as melhores taxas ao trocar entre moedas."
+    },
+    "cards": {
+      "name": "Cartões",
+      "title": "Cartões virtuais e físicos",
+      "description": "Obtenha seu cartão e comece a gastar em qualquer lugar do mundo."
+    }
+  },
+  "appSection": {
+    "cards": {
+      "card1": {
+        "title": "Pagamentos por aproximação",
+        "description": "Obtenha um cartão de débito para gastar online, no checkout e sacar dinheiro na moeda que você precisa imediatamente.",
+        "cta": "Peça seu cartão"
+      },
+      "card2": {
+        "title": "Envie dinheiro instantaneamente",
+        "description": "Transfira fundos para amigos e familiares em segundos, não importa onde estejam. Divida contas, solicite dinheiro e receba de volta rapidamente.",
+        "cta": "Começar a enviar"
+      },
+      "card3": {
+        "title": "Gaste no exterior como um local",
+        "description": "Obtenha taxas de câmbio reais sem taxas ocultas. Saque dinheiro em caixas eletrônicos em todo o mundo e gaste em mais de 150 moedas com seu cartão.",
+        "cta": "Viaje conosco"
+      }
+    }
+  },
+  "about": {
+    "regulatory": {
+      "text1": "© 2025 | PLEXO GROUP LTD é uma empresa registrada na Inglaterra e País de Gales sob o número 12345678. Endereço registrado: 123 Financial Street, Londres, EC1A 1BB, Reino Unido. PLEXO GROUP LTD é autorizada e regulamentada pela Autoridade de Conduta Financeira sob os Regulamentos de Dinheiro Eletrônico de 2011 para distribuição de e-money e prestação de serviços de pagamento (FRN: 987654). PLEXO é um nome comercial da PLEXO GROUP LTD.",
+      "text2": "A Conta e Cartão Plexo são emitidos pela Autoridade Parceira Financeira sob os Regulamentos de Dinheiro Eletrônico de 2011 e é regulamentada na Inglaterra e País de Gales. Número da empresa 12345678, com endereço registrado em 123 Partner Street, Londres, EC1A 1BB, Reino Unido."
+    },
+    "partnerships": {
+      "card1": {
+        "label": "Parceiro Oficial de",
+        "title": "Premier League F.C."
+      },
+      "card2": {
+        "label": "Embaixadores da Marca de Parceria Global",
+        "title": "Atletas e Influenciadores"
+      }
+    }
+  }
+}

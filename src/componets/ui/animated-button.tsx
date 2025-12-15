@@ -61,15 +61,15 @@ export function AnimatedButton({ href, variant, className, children, id }: Anima
         "flex items-center justify-center",
         "focus:outline-none focus:ring-2 focus:ring-offset-2",
         variant === "solid" && [
-          "bg-white text-jeton-green",
-          "hover:bg-white/95",
-          "focus:ring-white focus:ring-offset-jeton-green"
+          "bg-black text-white",
+          "hover:bg-black/95",
+          "focus:ring-black focus:ring-offset-jeton-green"
         ],
         variant === "outline" && [
-          "bg-transparent text-white",
-          "border-2 border-[#86efac]/50",
-          "hover:border-[#86efac]/70 hover:bg-[#86efac]/10",
-          "focus:ring-[#86efac]/40 focus:ring-offset-jeton-green"
+          "bg-transparent text-black",
+          "border-2 border-black/50",
+          "hover:border-black/70 hover:bg-black/10",
+          "focus:ring-black/40 focus:ring-offset-jeton-green"
         ],
         className
       )}

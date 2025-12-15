@@ -26,10 +26,10 @@ export function NavButton({ item, isActive, onClick }: NavButtonProps) {
       className={cn(
         "flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-full",
         "transition-colors duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-inset",
+        "focus:outline-none focus:ring-2 focus:ring-black/30 focus:ring-inset",
         isActive
-          ? "bg-[#86efac]/40 text-white"
-          : "text-white/80 hover:text-white hover:bg-[#86efac]/20",
+          ? "bg-[#86efac]/40 text-black"
+          : "text-[#1c1c1c] hover:text-black hover:bg-[#86efac]/20",
         hasIconOnly && "px-3"
       )}
       aria-current={isActive ? "page" : undefined}

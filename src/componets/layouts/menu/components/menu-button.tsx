@@ -10,9 +10,10 @@ type MenuButtonProps = {
   isOpen: boolean;
   onClick: () => void;
   isOnHero: boolean;
+  useFullGreen?: boolean;
 };
 
-export function MenuButton({ isOpen, onClick, isOnHero }: MenuButtonProps) {
+export function MenuButton({ isOpen, onClick, isOnHero, useFullGreen = false }: MenuButtonProps) {
   const t = useTranslations("common");
 
   return (
@@ -24,14 +25,16 @@ export function MenuButton({ isOpen, onClick, isOnHero }: MenuButtonProps) {
       transition={{ duration: 0.2, ease: MENU_EASING }}
       className={cn(
         "flex items-center gap-3 px-6 py-3",
-        "text-white text-sm font-medium",
+        "text-black text-sm font-medium",
         "rounded-full",
         "transition-colors duration-300",
         isOpen 
           ? "bg-[#86efac]/30 backdrop-blur-md"
-          : isOnHero
-            ? "bg-[#86efac]/30 backdrop-blur-md"
-            : "bg-jeton-green"
+          : useFullGreen
+            ? "bg-jeton-green"
+            : isOnHero
+              ? "bg-[#86efac]/30 backdrop-blur-md"
+              : "bg-jeton-green"
       )}
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}

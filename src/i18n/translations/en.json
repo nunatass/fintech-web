@@ -1,0 +1,166 @@
+{
+  "common": {
+    "appName": "Plexo",
+    "login": "Log in",
+    "signup": "Sign up",
+    "menu": "Menu",
+    "scroll": "Scroll",
+    "support": "Support"
+  },
+  "languages": {
+    "en": "English",
+    "pt": "Português",
+    "selectLanguage": "Select language"
+  },
+  "hero": {
+    "title": {
+      "line1": "One app",
+      "line2": "for all needs"
+    },
+    "subtitle": "Single account for all your payments.",
+    "appStore": {
+      "downloadOn": "Download on the",
+      "appStore": "App Store",
+      "getItOn": "GET IT ON",
+      "googlePlay": "Google Play"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "benefits": "Benefits",
+    "cards": "Cards",
+    "app": "App",
+    "faqs": "FAQs",
+    "homepage": "Homepage"
+  },
+  "menu": {
+    "personal": "Personal",
+    "plexoCard": "Plexo Card",
+    "fees": "Fees",
+    "business": "Business",
+    "company": "Company",
+    "newsroom": "Newsroom",
+    "partnerships": "Partnerships",
+    "mediaAssets": "Media Assets"
+  },
+  "unify": {
+    "title": {
+      "line1": "Unify your",
+      "line2": "finances"
+    }
+  },
+  "actions": {
+    "add": "Add",
+    "send": "Send",
+    "payments": "Pay"
+  },
+  "benefits": {
+    "title": {
+      "line1": "FLEXIBLE",
+      "line2": "BENEFITS"
+    },
+    "items": {
+      "international": {
+        "title": "International Card",
+        "descriptionLine1": "Use your card for international payments anywhere in the world.",
+        "descriptionLine2": "No borders, no limits."
+      },
+      "fees": {
+        "title": "Lowest Fees",
+        "descriptionLine1": "Enjoy the lowest fees in the market.",
+        "descriptionLine2": "Save more on every transaction you make."
+      },
+      "transfers": {
+        "title": "Instant Transfers",
+        "descriptionLine1": "Send money instantly inside and outside the country.",
+        "descriptionLine2": "Fast, secure, reliable."
+      },
+      "cashback": {
+        "title": "Cashback Rewards",
+        "descriptionLine1": "Earn cashback on every purchase, online or in-store.",
+        "descriptionLine2": "Save more as you spend."
+      }
+    }
+  },
+  "cardSection": {
+    "card": {
+      "title": "Your Go-To for Every Purchase",
+      "features": {
+        "contactless": "Contactless payments? Sure.",
+        "limits": "Spending limits? Check.",
+        "freezing": "Card freezing? Also check."
+      },
+      "cta": "Order your card",
+      "learnMore": "Learn more"
+    },
+    "moveMoney": {
+      "title": "Move your money worldwide",
+      "description": "Save money when you send, spend and get paid in different currencies. All you need, in one account, wherever you need it.",
+      "cta": "Get Started",
+      "learnMore": "Explore the Account"
+    }
+  },
+  "features": {
+    "add": {
+      "name": "Add",
+      "title": "Add or send in a few taps",
+      "description": "Easily add or send money from your account."
+    },
+    "send": {
+      "name": "Send",
+      "title": "Send money instantly",
+      "description": "Transfer funds to anyone, anywhere in seconds."
+    },
+    "method": {
+      "name": "Method",
+      "title": "50+ payment methods across Europe",
+      "description": "Plexo is seamlessly connected with more than 25 countries, and 50 payment methods."
+    },
+    "exchange": {
+      "name": "Exchange",
+      "title": "Exchange currencies instantly",
+      "description": "Get the best rates when you exchange between currencies."
+    },
+    "cards": {
+      "name": "Cards",
+      "title": "Virtual & physical cards",
+      "description": "Get your card and start spending anywhere in the world."
+    }
+  },
+  "appSection": {
+    "cards": {
+      "card1": {
+        "title": "Contactless payments",
+        "description": "Get a debit card to spend online, at the checkout, and to withdraw cash in the currency you need right away.",
+        "cta": "Get your card"
+      },
+      "card2": {
+        "title": "Send money instantly",
+        "description": "Transfer funds to friends and family in seconds, no matter where they are. Split bills, request money, and get paid back fast.",
+        "cta": "Start sending"
+      },
+      "card3": {
+        "title": "Spend abroad like a local",
+        "description": "Get real exchange rates with no hidden fees. Withdraw cash from ATMs worldwide and spend in over 150 currencies with your card.",
+        "cta": "Travel with us"
+      }
+    }
+  },
+  "about": {
+    "regulatory": {
+      "text1": "© 2025 | PLEXO GROUP LTD is a company registered in England and Wales under company number 12345678. Registered office address: 123 Financial Street, London, EC1A 1BB, United Kingdom. PLEXO GROUP LTD is authorized and regulated by the Financial Conduct Authority under the Electronic Money Regulations 2011 for distributing e-money and providing payment services (FRN: 987654). PLEXO is a trading name of PLEXO GROUP LTD.",
+      "text2": "The Plexo Card Account and Card are issued by Financial Partner Authority under the Electronic Money Regulations 2011 and is regulated in England and Wales. Company number 12345678, with its registered office address at 123 Partner Street, London, EC1A 1BB, United Kingdom."
+    },
+    "partnerships": {
+      "card1": {
+        "label": "Official Partner of",
+        "title": "Premier League F.C."
+      },
+      "card2": {
+        "label": "Global Partnership Brand Ambassadors",
+        "title": "Athletes & Influencers"
+      }
+    }
+  }
+}

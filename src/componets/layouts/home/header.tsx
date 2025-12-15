@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { LanguageSelector } from "@/componets/ui/language-selector";
 import { AnimatedButton } from "@/componets/ui/animated-button";
-import { useMenu } from "@/componets/layouts/menu";
+import { useMenuStore } from "@/hooks/store";
 
 export function Header() {
-  const { isOpen } = useMenu();
+  const isOpen = useMenuStore((state) => state.isOpen);
   const hasAnimated = useRef(false);
   const t = useTranslations("common");
 
@@ -33,7 +33,7 @@ export function Header() {
                 exit={{ rotateY: 90, opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
                 style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
-                className="block text-4xl font-bold text-white tracking-tight"
+                className="block text-4xl font-bold text-black tracking-tight"
                 aria-label={`${t("appName")} - Home`}
               >
                 {t("appName")}

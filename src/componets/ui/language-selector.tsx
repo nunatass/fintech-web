@@ -9,17 +9,17 @@ import { useRouter, usePathname } from "@/i18n/routing";
 import { type Locale } from "@/i18n/config";
 import Image from "next/image";
 
-import englandFlag from "@/assets/images/countries/england.svg";
+import ukFlag from "@/assets/images/countries/united-kingdom.svg";
 import portugalFlag from "@/assets/images/countries/portugal.svg";
 
 type Language = {
   code: Locale;
   nameKey: string;
-  flag: typeof englandFlag;
+  flag: typeof ukFlag;
 };
 
 const languages: Language[] = [
-  { code: "en", nameKey: "en", flag: englandFlag },
+  { code: "en", nameKey: "en", flag: ukFlag },
   { code: "pt", nameKey: "pt", flag: portugalFlag },
 ];
 
@@ -79,12 +79,12 @@ export function LanguageSelector({ className, size = "default" }: LanguageSelect
         }}
         className={cn(
           "flex items-center gap-2",
-          "text-white text-sm font-medium",
-          "border-2 border-[#86efac]/50 rounded-xl",
+          "text-black text-sm font-medium",
+          "border-2 border-black/50 rounded-xl",
           "bg-transparent",
-          "hover:border-[#86efac]/70 hover:bg-[#86efac]/10",
+          "hover:border-black/70 hover:bg-black/10",
           "transition-colors duration-200",
-          "focus:outline-none focus:ring-2 focus:ring-[#86efac]/40",
+          "focus:outline-none focus:ring-2 focus:ring-black/40",
           "disabled:opacity-50",
           size === "default" ? "px-4 py-2.5" : "px-5 py-3"
         )}

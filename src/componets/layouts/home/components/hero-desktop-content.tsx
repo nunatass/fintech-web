@@ -9,8 +9,9 @@ export function HeroDesktopContent() {
   const t = useTranslations("hero");
 
   return (
-    <div className="hidden md:flex relative z-10 flex-col justify-end min-h-screen px-10 lg:px-12 xl:px-16 pt-28 pb-40">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-20">
+    <div className="hidden md:flex relative z-10 flex-col md:justify-between xl:justify-end min-h-screen px-10 lg:px-12 xl:px-16 pt-28 pb-40">
+
+      <div className="w-full flex-1 flex flex-col justify-between gap-6 lg:gap-20 xl:flex-row xl:items-end xl:justify-between">
         {/* Left side - Main headline */}
         <motion.div 
           className="flex-shrink-0"
@@ -18,7 +19,7 @@ export function HeroDesktopContent() {
           initial="hidden"
           animate="visible"
         >
-          <h1 className="text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold text-white leading-[1.02] tracking-[-0.02em]">
+          <h1 className="text-6xl lg:text-[5rem] xl:text-[5.75rem] font-bold text-black leading-[1.02] tracking-[-0.02em]">
             <span className="block overflow-hidden">
               <motion.span variants={HERO_VARIANTS.line} className="block">
                 {t("title.line1")}
@@ -42,7 +43,7 @@ export function HeroDesktopContent() {
         >
           <motion.p 
             variants={HERO_VARIANTS.fadeUp}
-            className="text-xl text-white/90 mb-5 leading-relaxed"
+            className="text-xl text-black/90 mb-5 leading-relaxed"
           >
             {t("subtitle")}
           </motion.p>

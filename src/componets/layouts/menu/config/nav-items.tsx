@@ -7,6 +7,7 @@ export type NavItem = {
   hasDropdown?: boolean;
   isExternal?: boolean;
   href?: string;
+  sectionId?: string;
 };
 
 export const navItems: NavItem[] = [
@@ -14,27 +15,16 @@ export const navItems: NavItem[] = [
     id: "home",
     labelKey: "home",
     icon: <HomeIcon className="w-5 h-5" />,
-    href: "/",
-  },
-  {
-    id: "about",
-    labelKey: "about",
-    hasDropdown: true,
-  },
-  {
-    id: "cards",
-    labelKey: "cards",
-    isExternal: true,
-    href: "/cards",
+    sectionId: "hero",
   },
   {
     id: "app",
     labelKey: "app",
-    hasDropdown: true,
+    sectionId: "app",
   },
   {
-    id: "faqs",
-    labelKey: "faqs",
+    id: "about",
+    labelKey: "about",
     hasDropdown: true,
   },
 ];

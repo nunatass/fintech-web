@@ -7,6 +7,34 @@ import { cn } from "@/lib/utils";
 import { LanguageSelector } from "@/componets/ui/language-selector";
 import { MENU_EASING } from "../config";
 
+const logoVariants = {
+  hidden: { rotateY: -90, opacity: 0 },
+  visible: {
+    rotateY: 0,
+    opacity: 1,
+    transition: { duration: 0.4, delay: 0.15, ease: MENU_EASING },
+  },
+  exit: {
+    rotateY: 90,
+    opacity: 0,
+    transition: { duration: 0.25, ease: MENU_EASING },
+  },
+};
+
+const buttonsVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: 0.15, ease: MENU_EASING },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: { duration: 0.25, delay: 0.05, ease: MENU_EASING },
+  },
+};
+
 export function MenuHeader() {
   const t = useTranslations("common");
 
@@ -16,11 +44,12 @@ export function MenuHeader() {
       <div className="perspective-[1000px]">
         <motion.a
           href="/"
-          initial={{ rotateY: -90, opacity: 0 }}
-          animate={{ rotateY: 0, opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.15, ease: MENU_EASING }}
+          variants={logoVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
           style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
-          className="block text-4xl font-bold text-white tracking-tight"
+          className="block text-4xl font-bold text-black tracking-tight"
           aria-label={`${t("appName")} - Home`}
         >
           {t("appName")}
@@ -28,10 +57,11 @@ export function MenuHeader() {
       </div>
 
       {/* Right side buttons */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.15, ease: MENU_EASING }}
+      <motion.div
+        variants={buttonsVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className="flex items-center gap-2"
       >
         <LanguageSelector size="lg" />
@@ -40,7 +70,6 @@ export function MenuHeader() {
     </div>
   );
 }
-
 function AnimatedLoginButton({ children, id }: { children: React.ReactNode; id: string }) {
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -75,8 +104,8 @@ function AnimatedLoginButton({ children, id }: { children: React.ReactNode; id: 
       className={cn(
         "flex items-center justify-center overflow-hidden",
         "py-3 text-sm font-medium",
-        "border-2 border-[#86efac]/50 rounded-xl",
-        "bg-transparent text-white"
+        "border-2 border-black/50 rounded-xl",
+        "bg-transparent text-black"
       )}
     >
       <span ref={textRef} className="whitespace-nowrap">
@@ -85,3 +114,4 @@ function AnimatedLoginButton({ children, id }: { children: React.ReactNode; id: 
     </a>
   );
 }
+

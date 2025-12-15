@@ -1,222 +1,122 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { ArrowUpRightIcon } from "@/componets/icons";
-import { MENU_EASING
- } from "../config";
+import { ArrowUpRightIcon, ChevronDownIcon } from "@/componets/icons";
+import { MENU_EASING } from "../config";
+import { navItems, type NavItem } from "../config/nav-items";
+import { useMenuStore } from "@/hooks/store";
 
-type MenuItemConfig = {
-  id: string;
-  labelKey: string;
-  icon: React.ReactNode;
-  href: string;
-  isExternal?: boolean;
-  isActive?: boolean;
+const totalItems = navItems.length;
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (itemIndex: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      delay: 0.15 + itemIndex * 0.06,
+      ease: MENU_EASING,
+    },
+  }),
+  exit: (itemIndex: number) => ({
+    opacity: 0,
+    x: -20,
+    transition: {
+      duration: 0.2,
+      delay: (totalItems - 1 - itemIndex) * 0.04,
+      ease: MENU_EASING,
+    },
+  }),
 };
-
-type MenuSectionConfig = {
-  titleKey?: string;
-  items: MenuItemConfig[];
-};
-
-const menuSectionsConfig: MenuSectionConfig[] = [
-  {
-    items: [
-      {
-        id: "homepage",
-        labelKey: "navigation.homepage",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/30 flex items-center justify-center">
-            <div className="w-5 h-5 rounded bg-white/20" />
-          </div>
-        ),
-        href: "/",
-        isActive: true,
-      },
-    ],
-  },
-  {
-    titleKey: "menu.personal",
-    items: [
-      {
-        id: "plexo-card",
-        labelKey: "menu.plexoCard",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center overflow-hidden">
-            <div className="w-6 h-4 rounded bg-gradient-to-br from-pink-300 to-purple-400" />
-          </div>
-        ),
-        href: "/personal/card",
-      },
-      {
-        id: "fees",
-        labelKey: "menu.fees",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center overflow-hidden">
-            <div className="w-6 h-6 rounded bg-[#86efac]/40" />
-          </div>
-        ),
-        href: "/personal/fees",
-      },
-    ],
-  },
-  {
-    items: [
-      {
-        id: "business",
-        labelKey: "menu.business",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center text-white font-semibold">
-            B
-          </div>
-        ),
-        href: "/business",
-        isExternal: true,
-      },
-    ],
-  },
-  {
-    titleKey: "menu.company",
-    items: [
-      {
-        id: "about",
-        labelKey: "navigation.about",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
-            <div className="w-5 h-5 rounded bg-white/30" />
-          </div>
-        ),
-        href: "/company/about",
-      },
-      {
-        id: "newsroom",
-        labelKey: "menu.newsroom",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
-            <div className="w-5 h-5 rounded bg-white/30" />
-          </div>
-        ),
-        href: "/company/newsroom",
-      },
-      {
-        id: "partnerships",
-        labelKey: "menu.partnerships",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
-            <div className="w-5 h-5 rounded bg-white/30" />
-          </div>
-        ),
-        href: "/company/partnerships",
-      },
-      {
-        id: "media-assets",
-        labelKey: "menu.mediaAssets",
-        icon: (
-          <div className="w-10 h-10 rounded-xl bg-[#86efac]/20 flex items-center justify-center">
-            <div className="w-5 h-5 rounded-full bg-white/30" />
-          </div>
-        ),
-        href: "/company/media-assets",
-      },
-    ],
-  },
-];
 
 export function MenuContent() {
+  const [activeItem, setActiveItem] = useState("home");
+  const setIsOpen = useMenuStore((state) => state.setIsOpen);
+
+  const handleNavClick = (item: NavItem) => {
+    setActiveItem(item.id);
+    
+    // Close menu and scroll to section
+    setIsOpen(false);
+    
+    setTimeout(() => {
+      if (item.sectionId) {
+        const section = document.getElementById(item.sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else if (item.id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 300);
+  };
+
   return (
     <div className="px-6 pb-32">
-      {menuSectionsConfig.map((section, sectionIndex) => (
-        <MenuSection
-          key={sectionIndex}
-          titleKey={section.titleKey}
-          items={section.items}
-          sectionIndex={sectionIndex}
-        />
-      ))}
+      <nav className="space-y-2">
+        {navItems.map((item, index) => (
+          <MenuNavItem
+            key={item.id}
+            item={item}
+            isActive={activeItem === item.id}
+            itemIndex={index}
+            onClick={() => handleNavClick(item)}
+          />
+        ))}
+      </nav>
     </div>
   );
 }
 
-type MenuSectionProps = {
-  titleKey?: string;
-  items: MenuItemConfig[];
-  sectionIndex: number;
-};
-
-function MenuSection({ titleKey, items, sectionIndex }: MenuSectionProps) {
-  const t = useTranslations();
-
-  return (
-    <motion.div 
-      className="mb-2"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.5, 
-        delay: 0.1 + sectionIndex * 0.08,
-        ease: MENU_EASING
-      }}
-    >
-      {titleKey && (
-        <p className="text-white/50 text-sm font-medium mb-2 mt-4">
-          {t(titleKey)}
-        </p>
-      )}
-      <div className="space-y-1">
-        {items.map((item, itemIndex) => (
-          <MenuItemLink
-            key={item.id}
-            item={item}
-            sectionIndex={sectionIndex}
-            itemIndex={itemIndex}
-          />
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-type MenuItemLinkProps = {
-  item: MenuItemConfig;
-  sectionIndex: number;
+type MenuNavItemProps = {
+  item: NavItem;
+  isActive: boolean;
   itemIndex: number;
+  onClick: () => void;
 };
 
-function MenuItemLink({ item, sectionIndex, itemIndex }: MenuItemLinkProps) {
-  const t = useTranslations();
+function MenuNavItem({ item, isActive, itemIndex, onClick }: MenuNavItemProps) {
+  const t = useTranslations("navigation");
 
   return (
-    <motion.a
-      href={item.href}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        duration: 0.4,
-        delay: 0.15 + sectionIndex * 0.08 + itemIndex * 0.04,
-        ease: MENU_EASING
-      }}
+    <motion.button
+      type="button"
+      onClick={onClick}
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      custom={itemIndex}
       whileHover={{ scale: 0.98, x: 4 }}
       whileTap={{ scale: 0.96 }}
       className={cn(
-        "flex items-center gap-4 px-4 py-3 rounded-2xl",
+        "w-full flex items-center gap-4 px-4 py-4 rounded-2xl",
         "transition-colors duration-200",
-        item.isActive
-          ? "bg-[#86efac]/20"
-          : "hover:bg-[#86efac]/10"
+        isActive ? "bg-[#86efac]/20" : "hover:bg-[#86efac]/10"
       )}
     >
-      {item.icon}
-      <span className="text-white font-medium flex-1">
+      {item.icon && (
+        <div className="w-10 h-10 rounded-xl bg-[#86efac]/30 flex items-center justify-center text-black">
+          {item.icon}
+        </div>
+      )}
+      <span className={cn(
+        "font-medium flex-1 text-left text-lg",
+        isActive ? "text-black" : "text-[#1c1c1c]"
+      )}>
         {t(item.labelKey)}
       </span>
+      {item.hasDropdown && (
+        <ChevronDownIcon className="w-5 h-5 text-black/50" />
+      )}
       {item.isExternal && (
-        <ArrowUpRightIcon className="w-4 h-4 text-white/70" />
+        <ArrowUpRightIcon className="w-5 h-5 text-black/50" />
       )}
-      {item.isActive && (
-        <div className="w-2 h-2 rounded-full bg-white" />
-      )}
-    </motion.a>
+      {isActive && <div className="w-2 h-2 rounded-full bg-black" />}
+    </motion.button>
   );
 }

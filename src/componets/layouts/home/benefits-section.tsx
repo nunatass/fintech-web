@@ -41,10 +41,22 @@ export function BenefitsSection() {
     >
       {/* Desktop Layout */}
       <div className="hidden md:block relative">
-        {/* Sticky iPhone mask container */}
-        <div className="sticky top-0 h-screen flex items-center justify-start px-12 lg:px-20 xl:px-32 z-20 pointer-events-none">
+        {/* Clipping container - only shows content in this area */}
+        <div className="sticky top-0 h-screen overflow-hidden z-10">
+          <div className="absolute inset-0 flex items-center justify-start px-12 lg:px-20 xl:px-32">
+            <div className="w-[45%] flex items-center justify-center">
+              {/* Clipping window - iPhone-shaped */}
+              <div className="relative w-[350px] h-[700px] rounded-[3rem] overflow-hidden">
+                {/* This creates the visible area */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sticky iPhone frame - on top of everything */}
+        <div className="sticky top-0 h-screen flex items-center justify-start px-12 lg:px-20 xl:px-32 z-20 pointer-events-none -mt-[100vh]">
           <div className="w-[45%] flex items-center justify-center">
-            {/* iPhone frame - stays fixed */}
+            {/* iPhone frame */}
             <div className="relative w-[350px] h-[700px] rounded-[3rem] bg-black shadow-2xl overflow-hidden">
               {/* iPhone notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10" />
@@ -52,23 +64,17 @@ export function BenefitsSection() {
           </div>
         </div>
 
-        {/* Scrolling content - positioned behind the mask */}
+        {/* Scrolling content */}
         <div className="relative -mt-[100vh]">
           {cards.map((card, index) => (
             <div 
               key={card.id}
               className="min-h-screen flex items-center justify-between px-12 lg:px-20 xl:px-32 py-20"
             >
-              {/* Left side - iPhone content (clipped to iPhone shape) */}
+              {/* Left side - iPhone content */}
               <div className="w-[45%] flex items-center justify-center">
-                {/* Content container - clipped to iPhone shape */}
-                <div 
-                  className="relative w-[350px] h-[700px]"
-                  style={{
-                    clipPath: "inset(0 0 0 0 round 3rem)"
-                  }}
-                >
-                  {/* Actual content */}
+                <div className="relative w-[350px] h-[700px] rounded-[3rem] overflow-hidden bg-black">
+                  {/* Content */}
                   {card.videoSrc ? (
                     <video
                       src={card.videoSrc}
@@ -76,13 +82,13 @@ export function BenefitsSection() {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover rounded-[3rem]"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <img
                       src={card.imageSrc}
                       alt={card.title}
-                      className="w-full h-full object-cover rounded-[3rem]"
+                      className="w-full h-full object-cover"
                     />
                   )}
                 </div>

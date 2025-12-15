@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 export function HeroMaskTransition() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Track scroll progress through hero section only
   const { scrollYProgress } = useScroll({

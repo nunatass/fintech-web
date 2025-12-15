@@ -31,7 +31,7 @@ export function BottomNav() {
         }
       }
       
-      // Check if we're inside the app feature section (BenefitsSection - green bg)
+      // Check if we're inside the app feature section (AppSection - green bg)
       if (appFeatureSection) {
         const appFeatureRect = appFeatureSection.getBoundingClientRect();
         // App feature section is active when its top is above viewport bottom and bottom is below viewport top

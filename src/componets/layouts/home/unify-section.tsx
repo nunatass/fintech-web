@@ -6,14 +6,14 @@ import { UnifyTitle, UnifyCards, ActionItems } from "./components";
 
 export function UnifySection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const benefitsRef = useRef<HTMLElement | null>(null);
-  const [isAtBenefits, setIsAtBenefits] = useState(false);
+  const appRef = useRef<HTMLElement | null>(null);
+  const [isAtApp, setIsAtApp] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   
-  // Get benefits section ref on mount
+  // Get app section ref on mount
   useEffect(() => {
-    benefitsRef.current = document.getElementById("app");
+    appRef.current = document.getElementById("app");
     // Set mounted after a brief delay to ensure initial animation state
     setTimeout(() => setIsMounted(true), 100);
   }, []);
@@ -30,9 +30,9 @@ export function UnifySection() {
     offset: ["start start", "end end"],
   });
   
-  // Track scroll on benefits section to scroll actions up
-  const { scrollYProgress: benefitsProgress } = useScroll({
-    target: benefitsRef.current ? benefitsRef : undefined,
+  // Track scroll on app section to scroll actions up
+  const { scrollYProgress: appProgress } = useScroll({
+    target: appRef.current ? appRef : undefined,
     offset: ["start end", "start start"],
   });
 
@@ -89,20 +89,20 @@ export function UnifySection() {
   const exchangeOpacity = useTransform(cardProgress, [0.54, 0.6], isMounted ? [0, 1] : [0, 0]);
   const exchangeScale = useTransform(cardProgress, [0.54, 0.66], isMounted ? [0.3, 1.2] : [0.3, 0.3]);
 
-  // After Benefits shows and user scrolls, scroll actions up and out
-  const actionsContainerY = useTransform(benefitsProgress, [0.5, 1], ["0vh", "-100vh"]);
+  // After App section shows and user scrolls, scroll actions up and out
+  const actionsContainerY = useTransform(appProgress, [0.5, 1], ["0vh", "-100vh"]);
 
-  // Auto-scroll to Benefits when Exchange has shown
+  // Auto-scroll to App section when Exchange has shown
   useMotionValueEvent(cardProgress, "change", (latest) => {
     if (isScrolling) return;
     
-    // Going DOWN: When Exchange has shown and user scrolls past 0.70 → auto-scroll to Benefits (full screen)
-    if (latest >= 0.70 && !isAtBenefits) {
+    // Going DOWN: When Exchange has shown and user scrolls past 0.70 → auto-scroll to App section (full screen)
+    if (latest >= 0.70 && !isAtApp) {
       setIsScrolling(true);
-      setIsAtBenefits(true);
-      const benefitsSection = document.getElementById("app");
-      if (benefitsSection) {
-        benefitsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsAtApp(true);
+      const appSection = document.getElementById("app");
+      if (appSection) {
+        appSection.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => setIsScrolling(false), 1000);
       }
     }

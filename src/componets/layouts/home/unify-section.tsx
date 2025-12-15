@@ -9,10 +9,13 @@ export function UnifySection() {
   const benefitsRef = useRef<HTMLElement | null>(null);
   const [isAtBenefits, setIsAtBenefits] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   
   // Get benefits section ref on mount
   useEffect(() => {
     benefitsRef.current = document.getElementById("app");
+    // Set mounted after a brief delay to ensure initial animation state
+    setTimeout(() => setIsMounted(true), 100);
   }, []);
   
   // Text scroll tracking - starts when section top is at 25% from viewport top
@@ -73,17 +76,18 @@ export function UnifySection() {
   const contentY = useTransform(cardProgress, [0.3, 1], ["0vh", "-250vh"]);
 
   // Action items animations with spring bounce effect
-  const addY = useTransform(cardProgress, [0.3, 0.42], ["100vh", "0vh"]);
-  const addOpacity = useTransform(cardProgress, [0.3, 0.36], [0, 1]);
-  const addScale = useTransform(cardProgress, [0.3, 0.42], [0.3, 1.2]);
+  // Clamp to ensure they start off-screen on mount
+  const addY = useTransform(cardProgress, [0.3, 0.42], isMounted ? ["100vh", "0vh"] : ["100vh", "100vh"]);
+  const addOpacity = useTransform(cardProgress, [0.3, 0.36], isMounted ? [0, 1] : [0, 0]);
+  const addScale = useTransform(cardProgress, [0.3, 0.42], isMounted ? [0.3, 1.2] : [0.3, 0.3]);
   
-  const sendY = useTransform(cardProgress, [0.42, 0.54], ["100vh", "0vh"]);
-  const sendOpacity = useTransform(cardProgress, [0.42, 0.48], [0, 1]);
-  const sendScale = useTransform(cardProgress, [0.42, 0.54], [0.3, 1.2]);
+  const sendY = useTransform(cardProgress, [0.42, 0.54], isMounted ? ["100vh", "0vh"] : ["100vh", "100vh"]);
+  const sendOpacity = useTransform(cardProgress, [0.42, 0.48], isMounted ? [0, 1] : [0, 0]);
+  const sendScale = useTransform(cardProgress, [0.42, 0.54], isMounted ? [0.3, 1.2] : [0.3, 0.3]);
   
-  const exchangeY = useTransform(cardProgress, [0.54, 0.66], ["100vh", "0vh"]);
-  const exchangeOpacity = useTransform(cardProgress, [0.54, 0.6], [0, 1]);
-  const exchangeScale = useTransform(cardProgress, [0.54, 0.66], [0.3, 1.2]);
+  const exchangeY = useTransform(cardProgress, [0.54, 0.66], isMounted ? ["100vh", "0vh"] : ["100vh", "100vh"]);
+  const exchangeOpacity = useTransform(cardProgress, [0.54, 0.6], isMounted ? [0, 1] : [0, 0]);
+  const exchangeScale = useTransform(cardProgress, [0.54, 0.66], isMounted ? [0.3, 1.2] : [0.3, 0.3]);
 
   // After Benefits shows and user scrolls, scroll actions up and out
   const actionsContainerY = useTransform(benefitsProgress, [0.5, 1], ["0vh", "-100vh"]);

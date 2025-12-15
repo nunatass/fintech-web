@@ -34,6 +34,7 @@ export function IPhoneFrame({
                 loop
                 muted
                 playsInline
+                preload="auto"
                 poster={poster}
                 className="absolute top-0 left-0 w-full h-full object-cover"
               >

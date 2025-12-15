@@ -162,5 +162,13 @@
         "title": "Athletes & Influencers"
       }
     }
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Enter the phone number associated with your Jeton account",
+    "continue": "Continue",
+    "privacy": "Privacy Policy",
+    "qrTitle": "Log in with QR code",
+    "qrSubtitle": "Scan this code with your phone camera to log in instantly"
   }
 }

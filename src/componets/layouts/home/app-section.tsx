@@ -197,10 +197,22 @@ export function AppSection() {
 
             {/* Middle: iPhone */}
             <div className="flex justify-center">
-              <IPhoneFrame 
-                videoSrc={card.videoSrc}
-                imageSrc={card.imageSrc}
-              />
+              {card.videoSrc ? (
+                <IPhoneFrame>
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                  >
+                    <source src={card.videoSrc} type="video/mp4" />
+                  </video>
+                </IPhoneFrame>
+              ) : (
+                <IPhoneFrame imageSrc={card.imageSrc} />
+              )}
             </div>
 
             {/* Bottom: Description + Button */}
@@ -253,13 +265,15 @@ export function AppSection() {
                             <div className="relative w-full h-full">
                               {card.videoSrc ? (
                                 <video
-                                  src={card.videoSrc}
                                   autoPlay
                                   loop
                                   muted
                                   playsInline
+                                  preload="auto"
                                   className="w-full h-full object-cover"
-                                />
+                                >
+                                  <source src={card.videoSrc} type="video/mp4" />
+                                </video>
                               ) : (
                                 <img
                                   src={card.imageSrc}

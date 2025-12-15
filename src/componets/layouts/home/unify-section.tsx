@@ -1,14 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { UnifyTitle, UnifyCards, ActionItems } from "./components";
 
 export function UnifySection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const appRef = useRef<HTMLElement | null>(null);
-  const [isAtApp, setIsAtApp] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   
   // Get app section ref on mount
@@ -91,22 +89,6 @@ export function UnifySection() {
 
   // After App section shows and user scrolls, scroll actions up and out
   const actionsContainerY = useTransform(appProgress, [0.5, 1], ["0vh", "-100vh"]);
-
-  // Auto-scroll to App section when Exchange has shown
-  useMotionValueEvent(cardProgress, "change", (latest) => {
-    if (isScrolling) return;
-    
-    // Going DOWN: When Exchange has shown and user scrolls past 0.70 → auto-scroll to App section (full screen)
-    if (latest >= 0.70 && !isAtApp) {
-      setIsScrolling(true);
-      setIsAtApp(true);
-      const appSection = document.getElementById("app");
-      if (appSection) {
-        appSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(() => setIsScrolling(false), 1000);
-      }
-    }
-  });
 
   return (
     <section

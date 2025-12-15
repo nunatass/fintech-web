@@ -1,58 +1,16 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function HeroMaskTransition() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isScrolling = useRef(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Track scroll progress through hero section only
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
-
-  // Auto-scroll to perfect position when user stops scrolling
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Clear previous timeout
-    if (scrollTimeout.current) {
-      clearTimeout(scrollTimeout.current);
-    }
-
-    // Set flag that we're scrolling
-    isScrolling.current = true;
-
-    // Wait for scroll to stop
-    scrollTimeout.current = setTimeout(() => {
-      isScrolling.current = false;
-      
-      // If stopped in the middle of animation (between 0.1 and 0.9)
-      if (latest > 0.1 && latest < 0.9) {
-        const heroSection = document.getElementById("hero");
-        const unifySection = document.getElementById("unify");
-        
-        // If more than halfway, scroll to unify
-        if (latest >= 0.5 && unifySection) {
-          unifySection.scrollIntoView({ behavior: "smooth" });
-        } 
-        // If less than halfway, scroll back to hero
-        else if (latest < 0.5 && heroSection) {
-          heroSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    }, 150); // Wait 150ms after user stops scrolling
-  });
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-    };
-  }, []);
 
   // Mask shape with very large curve - we only see the smooth top part
   const maskPath = useTransform(

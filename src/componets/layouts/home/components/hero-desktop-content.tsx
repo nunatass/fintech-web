@@ -9,7 +9,7 @@ export function HeroDesktopContent() {
   const t = useTranslations("hero");
 
   return (
-    <div className="hidden md:flex relative z-10 flex-col md:justify-between xl:justify-end min-h-screen px-10 lg:px-12 xl:px-16 pt-28 pb-40">
+    <div className="hidden md:flex relative z-10 flex-col md:justify-between xl:justify-end min-h-screen px-10 lg:px-12 xl:px-16 pt-28 pb-40 h-sm:pb-20 h-md:pb-24 h-lg:pb-32">
 
       <div className="w-full flex-1 flex flex-col justify-between gap-6 lg:gap-20 xl:flex-row xl:items-end xl:justify-between">
         {/* Left side - Main headline */}

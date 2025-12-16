@@ -16,7 +16,12 @@ export function IPhoneFrame({
   children
 }: IPhoneFrameProps) {
   return (
-    <div className="relative w-[180px] h-auto sm:w-[240px] md:w-[260px] lg:w-[280px] xl:w-[300px] 2xl:w-[360px]">
+    <div className="relative w-[180px] h-auto 
+                    sm:w-[240px] 
+                    md:w-[260px] h-md:md:w-[220px] h-sm:md:w-[200px]
+                    lg:w-[280px] h-md:lg:w-[240px] h-sm:lg:w-[220px]
+                    xl:w-[300px] h-md:xl:w-[260px] h-sm:xl:w-[240px]
+                    2xl:w-[360px]">
       {/* Media Container */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative w-full" style={{ paddingTop: '210.57%' }}>

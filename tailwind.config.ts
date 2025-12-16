@@ -9,6 +9,12 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'h-sm': { 'raw': '(max-height: 600px)' },
+        'h-md': { 'raw': '(max-height: 700px)' },
+        'h-lg': { 'raw': '(max-height: 800px)' },
+        'h-xl': { 'raw': '(min-height: 900px)' },
+      },
       fontFamily: {
         sans: ["var(--font-outfit)", "sans-serif"],
       },

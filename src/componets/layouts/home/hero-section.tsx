@@ -30,7 +30,10 @@ export function HeroSection() {
       
       {/* Desktop iPhone Frame - Right side, bottom aligned */}
       <div 
-        className="hidden sm:flex fixed inset-0 items-end z-[8] pointer-events-none pb-40 lg:pb-28 justify-end pr-10 lg:pr-12 xl:justify-center xl:pr-0"
+        className="hidden sm:flex fixed inset-0 items-end z-[8] pointer-events-none 
+                   pb-32 sm:pb-36 md:pb-40 lg:pb-28 
+                   h-sm:pb-12 h-md:pb-16 h-lg:pb-20
+                   justify-end pr-10 lg:pr-12 xl:justify-center xl:pr-0"
         style={{ clipPath: "url(#wipe-mask)" }}
       >
         <IPhoneFrame videoSrc="/hero-video.mp4" />
